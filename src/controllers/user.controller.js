@@ -1,78 +1,63 @@
-const userService = require("../services/user.service");
+import * as userService from "../services/user.service.js";
 
-exports.getUsers = (req, res) => {
-
+export const getUsers = (req, res) => {
   userService.getUsers((err, result) => {
-
-    if (err)
+    if (err) {
       return res.status(500).json(err);
+    }
 
     res.json(result);
-
   });
-
 };
 
-exports.getUser = (req, res) => {
-
+export const getUser = (req, res) => {
   const id = req.params.id;
 
   userService.getUser(id, (err, result) => {
-
-    if (err)
+    if (err) {
       return res.status(500).json(err);
+    }
 
     res.json(result);
-
   });
-
 };
 
-exports.createUser = (req, res) => {
-
+export const createUser = (req, res) => {
   userService.createUser(req.body, (err, result) => {
-
-    if (err)
+    if (err) {
       return res.status(500).json(err);
+    }
 
     res.json({
-      message: "User Created"
+      message: "User Created",
     });
-
   });
-
 };
 
-exports.updateUser = (req, res) => {
-
+export const updateUser = (req, res) => {
   const id = req.params.id;
 
   userService.updateUser(id, req.body, (err, result) => {
-
-    if (err)
+    if (err) {
       return res.status(500).json(err);
+    }
 
     res.json({
-      message: "Updated Successfully"
+      message: "Updated Successfully",
     });
-
   });
-
 };
 
-exports.deleteUser = (req, res) => {
-
+export const deleteUser = (req, res) => {
   const id = req.params.id;
 
   userService.deleteUser(id, (err, result) => {
-
-    if (err)
+    if (err) {
       return res.status(500).json(err);
+    }
 
     res.json({
-      message: "Deleted Successfully"
+      message: "Deleted Successfully",
     });
-
   });
-
 };

@@ -1,56 +1,46 @@
-const db = require("../config/db");
+import db from "../config/db.js";
 
-exports.getUsers = (callback) => {
-
+export const getUsers = (callback) => {
   const sql = "SELECT * FROM users";
 
   db.query(sql, callback);
-
 };
 
-exports.getUser = (id, callback) => {
-
-  const sql = "SELECT * FROM users WHERE id=?";
+export const getUser = (id, callback) => {
+  const sql = "SELECT * FROM users WHERE id = ?";
 
   db.query(sql, [id], callback);
-
 };
 
-exports.createUser = (data, callback) => {
-
+export const createUser = (data, callback) => {
   const sql = `
-    INSERT INTO users(name,email,age)
-    VALUES(?,?,?)
-    `;
+    INSERT INTO users(name, email, age)
+    VALUES (?, ?, ?)
+  `;
 
   db.query(
     sql,
     [data.name, data.email, data.age],
     callback
   );
-
 };
 
-exports.updateUser = (id, data, callback) => {
-
+export const updateUser = (id, data, callback) => {
   const sql = `
     UPDATE users
-    SET name=?,email=?,age=?
-    WHERE id=?
-    `;
+    SET name = ?, email = ?, age = ?
+    WHERE id = ?
+  `;
 
   db.query(
     sql,
     [data.name, data.email, data.age, id],
     callback
   );
-
 };
 
-exports.deleteUser = (id, callback) => {
-
-  const sql = "DELETE FROM users WHERE id=?";
+export const deleteUser = (id, callback) => {
+  const sql = "DELETE FROM users WHERE id = ?";
 
   db.query(sql, [id], callback);
-
 };

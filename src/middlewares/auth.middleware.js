@@ -1,7 +1,7 @@
-module.exports = (req, res, next) => {
-
+const auth = (req, res, next) => {
   console.log("Authentication Checked");
 
   next();
+};
 
-}
+export default auth;

@@ -1,11 +1,12 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+import app from "./app.js";
+import db from "./config/db.js";
 
-const app = require("./app");
-const db = require("./config/db");
+dotenv.config();
 
 db.connect((err) => {
   if (err) {
-    console.log(" Database Connection Failed!");
+    console.log("Database Connection Failed!");
     console.log(err);
     return;
   }
