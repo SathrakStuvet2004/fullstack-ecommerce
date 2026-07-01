@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Typography } from "@mui/material";
-import "../buttons/gamebutton"
+import GameButton from "../buttons/GameButton";
 import "../css/login.css";
-import GameButton from '../buttons/gamebutton';
+
 
 export default function Login() {
 
@@ -32,19 +32,19 @@ export default function Login() {
               noValidate
               autoComplete="off"
             >
-             <div className="email">
-  <TextField
-    required
-    id="outlined-required"
-    label="Email"
-    type="email"
-    sx={{
-      "& .MuiOutlinedInput-input": {
-        color: "#fff",
-      },
-    }}
-  />
-</div>
+              <div className="email">
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Email"
+                  type="email"
+                  sx={{
+                    "& .MuiOutlinedInput-input": {
+                      color: "#fff",
+                    },
+                  }}
+                />
+              </div>
 
               <div className="password">
                 <TextField
