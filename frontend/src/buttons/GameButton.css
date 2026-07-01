@@ -1,0 +1,58 @@
+.game-button {
+    width: 100%;
+    height: 52px;
+
+    border: none;
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===========================
+   POSITIVE
+=========================== */
+
+.game-button.positive {
+    background: linear-gradient(135deg, #22C55E, #16A34A);
+    color: white;
+
+    box-shadow: 0 6px 18px rgba(34, 197, 94, 0.25);
+}
+
+.game-button.positive:hover {
+    transform: translateY(-2px);
+
+    background: linear-gradient(135deg, #16A34A, #15803D);
+
+    box-shadow: 0 10px 24px rgba(34, 197, 94, 0.35);
+}
+
+/* ===========================
+   NEGATIVE
+=========================== */
+
+.game-button.negative {
+    background: #334155;
+    color: #F8FAFC;
+
+    border: 1px solid #475569;
+}
+
+.game-button.negative:hover {
+    background: #475569;
+    transform: translateY(-2px);
+}
+
+.game-button:active {
+    transform: scale(0.98);
+}
