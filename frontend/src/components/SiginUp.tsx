@@ -1,19 +1,21 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, } from "@mui/material";
+import GameButton from "../buttons/GameButton";
+import "../css/signup.css";
 
 export default function SignUp() {
 
   return (
     <>
-      <div className="login container">
+      <div className="signup container">
         <p>SignUp Page</p>
 
-        <div className="user-info">
-          <div className="n-p-m-container">
+        <div className="user-information">
+          <div className="na-p-m-container">
             <Box
               component="form"
-              sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
+              className="signup-form"
               noValidate
               autoComplete="off"
             >
@@ -45,7 +47,7 @@ export default function SignUp() {
               </div>
             </Box>
           </div>
-          <div className="role-container">
+          <div className="role-selector-container">
             <FormControl>
               <FormLabel>Select Role</FormLabel>
 
@@ -66,18 +68,10 @@ export default function SignUp() {
             </FormControl>
           </div>
           <div className="button">
-            <button className="Login-button">
+            <GameButton variant="positive">
               sign up
-            </button>
+            </GameButton>
           </div>
-        </div>
-
-        <div className="signup-Link">
-          <p>if u don't have an account, click here to sign up
-            <button className="SignUp-button">
-              signUp
-            </button>
-          </p>
         </div>
       </div>
     </>
