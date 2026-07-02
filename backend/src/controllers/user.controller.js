@@ -51,11 +51,20 @@ export const getUser = (req, res) => {
 
 export const createUser = (req, res) => {
   userService.createUser(req.body, (err, result) => {
+
     if (err) {
+      if(err.code === "ER_DUP_ENTRY"){
+        return errorResponse(
+          res,
+          400,
+          "Email already exists"
+        );
+      }
       return errorResponse(
         res,
         500,
-        "Failed to create user"
+        "Failed to create user",
+        console.log(err)
       );
     }
 

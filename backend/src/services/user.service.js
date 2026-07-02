@@ -13,16 +13,30 @@ export const getUser = (id, callback) => {
 };
 
 export const createUser = (data, callback) => {
-  const sql = `
-    INSERT INTO users(name, email, age)
-    VALUES (?, ?, ?)
-  `;
 
-  db.query(
-    sql,
-    [data.name, data.email, data.age],
-    callback
-  );
+  if (data.role === "user") {
+    let sql = `
+    INSERT INTO users(name, email, password, role)
+    VALUES (?, ?, ?, ?)
+  `;
+    db.query(
+      sql,
+      [data.name, data.email, data.password, data.role],
+      callback
+    );
+  }
+
+  if (data.role === "seller") {
+    let sql = `
+    INSERT INTO sellers(name, email, password, role)
+    VALUES (?, ?, ?, ?)
+  `
+    db.query(
+      sql,
+      [data.name, data.email, data.password, data.role],
+      callback
+    );
+  }
 };
 
 export const updateUser = (id, data, callback) => {

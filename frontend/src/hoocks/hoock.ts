@@ -1,4 +1,6 @@
 import {useQuery,useMutation,useQueryClient,} from "@tanstack/react-query";
+import { toast } from "react-toastify";
+
 
 const API_URL = "http://localhost:3000";
 
@@ -41,7 +43,7 @@ export const usePostUser = () => {
 
   return useMutation({
     mutationFn: (newUser: any) =>
-      fetcher("/api /users", {
+      fetcher("/api/users", {
         method: "POST",
         body: JSON.stringify(newUser),
       }),
@@ -50,6 +52,10 @@ export const usePostUser = () => {
       queryClient.invalidateQueries({
         queryKey: ["users"],
       });
+    },
+
+    onError: (error: Error) => {
+      toast.error(error.message);
     },
   });
 };
