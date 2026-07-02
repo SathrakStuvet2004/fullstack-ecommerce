@@ -2,10 +2,22 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Typography } from "@mui/material";
 import GameButton from "../buttons/GameButton";
+import { useLoginUser } from "../hoocks/hoock";
 import "../css/login.css";
+import { useState } from 'react';
 
 
 export default function Login() {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { mutate: loginUser } = useLoginUser();
+
+  const handleLogin = () => {
+    loginUser({ email, password });
+
+  };
 
   return (
     <>
@@ -38,6 +50,8 @@ export default function Login() {
                   id="outlined-required"
                   label="Email"
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   sx={{
                     "& .MuiOutlinedInput-input": {
                       color: "#fff",
@@ -53,12 +67,15 @@ export default function Login() {
                   label="Password"
                   type="password"
                   autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </Box>
           </div>
           <div className="button">
-            <GameButton variant="positive">
+            <GameButton variant="positive"
+              onClick={handleLogin}>
               Login
             </GameButton>
           </div>

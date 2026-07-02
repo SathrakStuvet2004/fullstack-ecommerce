@@ -29,15 +29,6 @@ export const fetcher = async (
 };
 
 
-export const useGetUsers = () => {
-  return useQuery({
-    queryKey: ["users"],
-    queryFn: () => fetcher("/users"),
-    staleTime: 1000 * 60 * 5,
-    refetchOnWindowFocus: false,
-  });
-};
-
 export const usePostUser = () => {
   const queryClient = useQueryClient();
 
@@ -57,5 +48,36 @@ export const usePostUser = () => {
     onError: (error: Error) => {
       toast.error(error.message);
     },
+  });
+};
+
+export const useLoginUser = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (loginData: any) =>
+      fetcher("/api/login", {
+        method: "POST",
+        body: JSON.stringify(loginData),
+      }),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["users"],
+      });
+    },
+
+    onError: (error: Error) => {
+      toast.error(error.message);
+    },
+  });
+};
+
+export const useGetUsers = () => {
+  return useQuery({
+    queryKey: ["users"],
+    queryFn: () => fetcher("/api/login"),
+    staleTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false,
   });
 };
