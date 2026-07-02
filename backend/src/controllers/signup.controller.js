@@ -2,6 +2,7 @@ import { successResponse, errorResponse } from "../utils/response.js";
 import * as signupService from "../services/signup.service.js";
 
 export const createUser = (req, res) => {
+
   signupService.createUser(req.body, (err, result) => {
 
     if (err) {
@@ -16,7 +17,6 @@ export const createUser = (req, res) => {
         res,
         500,
         "Failed to create user",
-        console.log(err)
       );
     }
 
