@@ -5,11 +5,13 @@ import NotFound from "../pages/NotFound";
 
 export default function AppRoutes() {
   return (
-    <Routes>
+  <>
+  <Routes>
       <Route path="/" element={<LoginPage />} />
       <Route path="signup" element={<SignUpPage />} />
 
       <Route path="*" element={<NotFound />} />
-    </Routes>
+    </Routes></>
+    
   );
 }

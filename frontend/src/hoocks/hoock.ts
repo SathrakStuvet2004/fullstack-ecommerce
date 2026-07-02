@@ -36,12 +36,12 @@ export const useGetUsers = () => {
   });
 };
 
-export const useAddUser = () => {
+export const usePostUser = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (newUser: any) =>
-      fetcher("/users", {
+      fetcher("/api /users", {
         method: "POST",
         body: JSON.stringify(newUser),
       }),

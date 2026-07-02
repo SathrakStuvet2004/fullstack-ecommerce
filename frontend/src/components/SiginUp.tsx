@@ -3,6 +3,8 @@ import TextField from '@mui/material/TextField';
 import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, } from "@mui/material";
 import GameButton from "../buttons/GameButton";
 import { useState } from "react";
+import { usePostUser } from "../hoocks/hoock";
+import { toast } from "react-toastify";
 import "../css/signup.css";
 
 export default function SignUp() {
@@ -12,7 +14,15 @@ export default function SignUp() {
   const [email,setEmail]=useState("");
   const [password,setPassword]=useState("");
 
-  console.log(name,email,password,role);
+  const { mutate: addUser } = usePostUser();
+
+  const handleSignUp = () => {
+    
+  if(name.length===0 || email.length===0 || password.length===0){
+    return toast.error("Please fill all the fields");
+  }
+    addUser({ name, email, password, role });
+  };
   
   return (
     <>
@@ -86,7 +96,7 @@ export default function SignUp() {
             
           </div>
           <div className="button">
-            <GameButton variant="positive">
+            <GameButton variant="positive" onClick={handleSignUp}>
               sign up
             </GameButton>
           </div>
