@@ -43,7 +43,7 @@ export const usePostUser = () => {
 
   return useMutation({
     mutationFn: (newUser: any) =>
-      fetcher("/api/users", {
+      fetcher("/api/signup", {
         method: "POST",
         body: JSON.stringify(newUser),
       }),
