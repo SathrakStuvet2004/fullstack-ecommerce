@@ -61,7 +61,11 @@ export const useLoginUser = () => {
         body: JSON.stringify(loginData),
       }),
 
-    onSuccess: () => {
+    onSuccess: (data) => {
+
+      console.log(data)
+      toast.success(data.message)
+      
       queryClient.invalidateQueries({
         queryKey: ["users"],
       });

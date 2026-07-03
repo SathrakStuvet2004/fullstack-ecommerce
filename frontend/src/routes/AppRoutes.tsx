@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
-import SignUpPage from "../pages/SiginUpPage"
+import SignUpPage from "../pages/SiginUpPage";
 import NotFound from "../pages/NotFound";
+import EmailVerification from "../pages/EmailVerification";
 
 export default function AppRoutes() {
   return (
@@ -9,6 +10,7 @@ export default function AppRoutes() {
   <Routes>
       <Route path="login" element={<LoginPage />} />
       <Route path="signup" element={<SignUpPage />} />
+      <Route path ="user/verification" element ={<EmailVerification />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes></>

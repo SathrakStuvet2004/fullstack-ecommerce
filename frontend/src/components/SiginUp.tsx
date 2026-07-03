@@ -5,7 +5,6 @@ import GameButton from "../buttons/GameButton";
 import { useState } from "react";
 import { usePostUser } from "../hoocks/hoock";
 import { toast } from "react-toastify";
-import { useNavigate } from 'react-router'; 
 import "../css/signup.css";
 
 export default function SignUp() {
@@ -17,8 +16,6 @@ export default function SignUp() {
 
   const { mutate: addUser } = usePostUser();
 
-  const navigate = useNavigate();
-
   const handleSignUp = () => {
     
   if(name.length===0 || email.length===0 || password.length===0){
@@ -29,11 +26,6 @@ export default function SignUp() {
     setEmail("");
     setName("");
     setPassword("");
-
-    toast.success("account created successfully");
-
-    navigate("/login");
-
   };
   
   return (
