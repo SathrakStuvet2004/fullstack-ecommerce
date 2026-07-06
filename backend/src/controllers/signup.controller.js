@@ -23,7 +23,7 @@ export const createUser = (req, res) => {
     return successResponse(
       res,
       201,
-      "User created successfully",
+      "check your email for verification",
       {
         id: result.insertId,
       }

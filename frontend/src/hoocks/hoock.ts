@@ -39,7 +39,8 @@ export const usePostUser = () => {
         body: JSON.stringify(newUser),
       }),
 
-    onSuccess: () => {
+    onSuccess: (data) => {
+      toast.success(data.message)
       queryClient.invalidateQueries({
         queryKey: ["users"],
       });
@@ -61,11 +62,7 @@ export const useLoginUser = () => {
         body: JSON.stringify(loginData),
       }),
 
-    onSuccess: (data) => {
-
-      console.log(data)
-      toast.success(data.message)
-      
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["users"],
       });

@@ -7,27 +7,11 @@ CREATE TABLE users (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('Admin', 'User','seller') NOT NULL DEFAULT 'User',
+    role ENUM('Admin', 'User','seller') NOT NULL default 'user',
+    verification_token varchar(500),
+    verification_expires DATETIME default null,
     is_verified BOOLEAN DEFAULT FALSE,
 	is_active BOOLEAN DEFAULT false,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP
-);
-
-insert INTO users (name,email,password,role)
-values
-  ("admin","admin@gmail.com","admin1234","admin");
-  
-  CREATE TABLE sellers (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    role ENUM('seller') NOT NULL,
-    is_verified BOOLEAN DEFAULT FALSE,
-	is_active BOOLEAN DEFAULT false,
-    blocked boolean default false,
     seller_verification boolean default false,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -35,4 +19,11 @@ values
 );
 
 select * FROM users;
-select * from sellers;
+
+drop table users;
+
+update users
+set role = 'admin',
+	is_verified = true,
+	is_active = true
+where id = 1;

@@ -3,6 +3,7 @@ import db from "../config/db.js";
 import { generateToken } from '../utils/token.js'
 import { hashPassword } from "../utils/bcrypt.js";
 import { addMinutes } from "../utils/date.js";
+import { sendMail } from "../services/mail.service.js";
 
 export const createUser = (data, callback) => {
 
@@ -11,7 +12,7 @@ export const createUser = (data, callback) => {
 
   db.query(sql, [data.email], (err, result) => {
 
-    if(err){
+    if (err) {
       return callback(err);
     }
 
@@ -20,48 +21,45 @@ export const createUser = (data, callback) => {
     let sql = ''
 
     if (!user) {
+      //these all are used using smtp for auth.
 
-      const password = hashPassword(data.password)
+      // const password = hashPassword(data.password)
 
-      const token = generateToken(data);
+      // const token = generateToken(data);
 
-      const expires = addMinutes(15)
+      // const expires = addMinutes(15)
 
-      sql = `insert into users(name,email,password,role,verification_token,verification_expires) values(?,?,?,?,?,?)`
+      // sql = `insert into users(name,email,password,role,verification_token,verification_expires) values(?,?,?,?,?,?)`
 
-      return  db.query(sql, [data.name, data.email, password, data.role, token, expires], callback)
+      // db.query(sql, [data.name, data.email, password, data.role, token, expires], async (err, result) => {
+      //   if (err) {
+      //     return callback(err)
+      //   }
+      //   await sendMail({
+      //     to: data.email,
+      //     subject: "Verify your email",
+      //     html: `
+      //     <h2>Welcome!</h2>
+      //     <p>Please verify your email by clicking the link below.</p>
+      //     <a href="http://localhost:5173/verify?token=${token}">
+      //       Verify Email
+      //     </a>`,
+      //   });
+      //   return callback(null,result)
+      // })
 
+      
     }
-    const is_verified = user.is_verified
 
-    if (user.is_verified === 0) {
-      return console.log("user is available so we want to send the verified token")
-    }
+    //const is_verified = user.is_verified
 
-    if (user && is_verified) {
-      return console.log("user already exists")
-    }
+    // if (user.is_verified === 0) {
+    //   return console.log("user is available so we want to send the verified token")
+    // }
+
+    // if (user && is_verified) {
+    //   return console.log("user already exists")
+    // }
 
   })
 }
-// const password = bcrypt.hashSync(data.password, 10);
-
-// const token = jwt.sign(
-//   {
-//     id: data.name,
-//     email: data.email
-//   },
-//   process.env.JWT_SECRET,
-//   {
-//     expiresIn: "15m",
-//   }
-// );
-
-// const expires = new Date(Date.now() + 15 * 60 * 1000);
-
-// const sql = `insert into users(name,email,password,role,verification_token,verification_expires) values(?,?,?,?,?,?)`
-
-// db.query(sql, [data.name, data.email, password, data.role, token, expires], callback)
-
-// console.log(data);
-
