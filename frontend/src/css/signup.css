@@ -1,4 +1,3 @@
-
 .signup {
   min-height: 100vh;
   display: flex;
@@ -161,6 +160,46 @@
   width: 100%;
   height: 55px;
 
+}
+
+.button {
+  margin-top: 10px;
+}
+
+.button button {
+  width: 100%;
+  height: 55px;
+}
+
+.signup-link {
+  margin-top: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.signup-link p {
+  color: #cbd5e1;
+  font-size: 15px;
+}
+
+.signup-link button {
+  background: transparent;
+  border: none;
+  margin-left: 6px;
+  padding: 0;
+
+  color: #00d9ff;
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.signup-link button:hover {
+  color: #00ffff;
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {

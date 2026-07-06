@@ -1,33 +1,38 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, } from "@mui/material";
+//import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, } from "@mui/material";
 import GameButton from "../buttons/GameButton";
 import { useState } from "react";
-import { usePostUser } from "../hoocks/hoock";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"
+import { register } from '../services/auth.services';
 import "../css/signup.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
 
-  const [role,setRole]= useState("user");
-  const [name,setName]=useState("");
-  const [email,setEmail]=useState("");
-  const [password,setPassword]=useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const { mutate: addUser } = usePostUser();
+  const navigate = useNavigate()
 
-  const handleSignUp = () => {
-    
-  if(name.length===0 || email.length===0 || password.length===0){
-    return toast.error("Please fill all the fields");
-  }
-    addUser({ name, email, password, role });
+  const handleSignUp = async () => {
 
-    setEmail("");
-    setName("");
-    setPassword("");
+    if (name.length === 0 || email.length === 0 || password.length === 0) {
+      return toast.error("Please fill all the fields");
+    }
+
+    const result = await register(email, password);
+
+    toast.dark(result.message);
+
   };
-  
+
+  const navToLogin = () => {
+
+    navigate("/login")
+  }
+
   return (
     <>
       <div className="signup container">
@@ -75,7 +80,7 @@ export default function SignUp() {
               </div>
             </Box>
           </div>
-          <div className="role-selector-container">
+          {/* <div className="role-selector-container">
             <FormControl>
               <FormLabel>Select Role</FormLabel>
 
@@ -98,11 +103,22 @@ export default function SignUp() {
               </RadioGroup>
             </FormControl>
             
-          </div>
+          </div> */}
           <div className="button">
             <GameButton variant="positive" onClick={handleSignUp}>
               sign up
             </GameButton>
+          </div>
+          <div className="signup-link">
+            <p>
+              Already have an account?
+              <button
+                type="button"
+                onClick={navToLogin}
+              >
+                Login
+              </button>
+            </p>
           </div>
         </div>
       </div>
