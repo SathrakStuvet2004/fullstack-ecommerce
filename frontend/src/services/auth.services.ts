@@ -72,11 +72,28 @@ export const login = async (email: string, password: string): Promise<AuthRespon
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
+    console.log(userCredential);
+
+    if (!userCredential.user.emailVerified) {
+      return {
+        success: false,
+        message: "check your mail for verification",
+      };
+    }
+
     return {
       success: true,
+      message: "login Successful",
       user: userCredential.user,
     };
-  } catch (error) {
+  } catch (error: any) {
+    console.log(error)
+    if (error.code === "auth/invalid-credential") {
+      return {
+        success: false,
+        message: 'invalid mail or password'
+      }
+    }
     return {
       success: false,
       message: getErrorMessage(error),

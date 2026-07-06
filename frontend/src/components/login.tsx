@@ -2,9 +2,10 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Typography } from "@mui/material";
 import GameButton from "../buttons/GameButton";
-import { useLoginUser } from "../hoocks/hoock";
 import "../css/login.css";
 import { useState } from 'react';
+import { login } from '../services/auth.services';
+import { toast } from 'react-toastify';
 
 
 export default function Login() {
@@ -12,11 +13,16 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { mutate: loginUser } = useLoginUser();
+  const handleLogin = async() => {
+   
+    const resutl = await login(email , password);
 
-  const handleLogin = () => {
-    loginUser({ email, password });
-
+    if(resutl.success){
+      return toast.success(resutl.message)
+    }
+    else{
+      return toast.error(resutl.message);
+    }
   };
 
   return (
