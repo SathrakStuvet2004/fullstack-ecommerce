@@ -20,8 +20,6 @@ export const emailVerify = (data, callback) => {
              where verification_token = ?`;
 
       return db.query(sql, [true, data.token], (err, result) => {
-        console.log(result);
-        console.log(user);
 
         if (err) {
           return callback(err);

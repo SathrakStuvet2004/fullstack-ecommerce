@@ -1,0 +1,88 @@
+.verification {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.verification-card {
+  width: 100%;
+  max-width: 480px;
+  background: #131a29;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 18px;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.verification-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #00d9ff;
+  text-shadow:
+    0 0 8px #00d9ff,
+    0 0 20px rgba(0, 117, 155, .2);
+  margin-bottom: 25px;
+}
+
+.verification-text {
+  color: #cbd5e1;
+  font-size: 17px;
+  line-height: 1.6;
+  margin-top: 20px;
+}
+
+.spinner {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  border: 6px solid rgba(255, 255, 255, .08);
+  border-top: 6px solid #00d9ff;
+  border-right: 6px solid #00ffff;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  box-shadow:
+    0 0 12px #00d9ff,
+    0 0 25px rgba(0, 217, 255, .35);
+}
+
+.success-icon {
+  width: 75px;
+  height: 75px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: #00d9ff;
+  color: #131a29;
+  font-size: 42px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    0 0 15px #00d9ff,
+    0 0 35px rgba(0, 217, 255, .5);
+}
+
+.error-icon {
+  width: 75px;
+  height: 75px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: #ff4d4d;
+  color: white;
+  font-size: 42px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    0 0 15px #ff4d4d,
+    0 0 35px rgba(255, 77, 77, .5);
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
