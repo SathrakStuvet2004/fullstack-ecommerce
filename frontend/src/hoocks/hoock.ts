@@ -65,11 +65,12 @@ export const useVerify = () => {
     onSuccess: (data) => {
       toast.success(data.message)
       queryClient.invalidateQueries({
-        queryKey: ["users"],
+        queryKey: ["verifyusers"],
       });
     },
 
     onError: (error: Error) => {
+      console.log(error)
       toast.error(error.message);
     },
   });

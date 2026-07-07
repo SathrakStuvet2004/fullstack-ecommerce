@@ -13,6 +13,7 @@ export default function Verification() {
   const { mutate: verifyUser } = useVerify()
 
   useEffect(() => {
+    
     verifyUser({ token })
   }, [token])
 
