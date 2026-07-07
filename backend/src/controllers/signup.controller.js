@@ -6,12 +6,12 @@ export const createUser = (req, res) => {
   signupService.createUser(req.body, (err, result) => {
 
     if (err) {
-      if(err.code === "ER_DUP_ENTRY"){
+      if (err.code === 'ER_DUP_ENTRY') {
         return errorResponse(
           res,
-          400,
-          "Email already exists"
-        );
+          409,
+          'user already exist'
+        )
       }
       return errorResponse(
         res,
@@ -23,7 +23,7 @@ export const createUser = (req, res) => {
     return successResponse(
       res,
       201,
-      "check your email for verification",
+      "account created succesfully, check your mail for verification",
       {
         id: result.insertId,
       }

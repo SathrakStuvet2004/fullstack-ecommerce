@@ -4,15 +4,18 @@ import TextField from '@mui/material/TextField';
 import GameButton from "../buttons/GameButton";
 import { useState } from "react";
 import { toast } from "react-toastify"
-import { register } from '../services/auth.services';
+//import { register } from '../services/auth.services';
 import "../css/signup.css";
 import { useNavigate } from 'react-router-dom';
+import { usePostUser } from '../hoocks/hoock';
 
 export default function SignUp() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { mutate: adduser } = usePostUser()
 
   const navigate = useNavigate()
 
@@ -22,9 +25,16 @@ export default function SignUp() {
       return toast.error("Please fill all the fields");
     }
 
+    adduser({ name, email, password })
+
+    
+
+
+    /* auth in frontend
     const result = await register(email, password);
 
     toast.dark(result.message);
+    */
 
   };
 
