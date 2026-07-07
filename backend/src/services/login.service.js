@@ -8,6 +8,9 @@ export const loginUser = (data, callback) => {
 
   db.query(sql, [data.email], (err, result) => {
 
+    console.log('err',err)
+    console.log('result',result)
+
     if (err) {
       return callback(err, null);
     }
@@ -15,7 +18,7 @@ export const loginUser = (data, callback) => {
     const user = result[0];
 
     if (!user) {
-      return callback(new Error("invalid email or password"), null);
+      return callback(new Error("you Don't have an account"), null);
     }
 
     const isPasswordValid = bcrypt.compareSync(data.password, user.password);

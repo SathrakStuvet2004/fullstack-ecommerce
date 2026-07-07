@@ -8,21 +8,14 @@ import crypto from "crypto";
 
 export const createUser = (data, callback) => {
 
-  console.log(data);
-
   const password = hashPassword(data.password)
 
   const token = crypto.randomBytes(32).toString("hex");
-
-  console.log(token);
 
   const sql = `insert into users(name,email,password,verification_token)
   values(?,?,?,?) `
 
   db.query(sql, [data.name, data.email, password, token], async (err, result) => {
-
-    console.log("err", err)
-    console.log("result", result)
 
     if (err) {
       return callback(err)

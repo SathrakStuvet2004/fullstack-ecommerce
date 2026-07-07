@@ -2,6 +2,7 @@ import * as loginService from "../services/login.service.js";
 import { successResponse, errorResponse } from "../utils/response.js";
 
 export const loginUser = (req, res) => {
+  
   loginService.loginUser(req.body,
     (err, user) => {
       if (err) {

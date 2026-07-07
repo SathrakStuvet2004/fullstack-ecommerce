@@ -1,4 +1,4 @@
-import {useQuery,useMutation,useQueryClient,} from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient, } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 
@@ -35,6 +35,29 @@ export const usePostUser = () => {
   return useMutation({
     mutationFn: (newUser: any) =>
       fetcher("/api/signup", {
+        method: "POST",
+        body: JSON.stringify(newUser),
+      }),
+
+    onSuccess: (data) => {
+      toast.success(data.message)
+      queryClient.invalidateQueries({
+        queryKey: ["users"],
+      });
+    },
+
+    onError: (error: Error) => {
+      toast.error(error.message);
+    },
+  });
+};
+
+export const useVerify = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (newUser: any) =>
+      fetcher("/api/verify/token", {
         method: "POST",
         body: JSON.stringify(newUser),
       }),

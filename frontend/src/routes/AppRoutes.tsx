@@ -10,7 +10,7 @@ export default function AppRoutes() {
   <Routes>
       <Route path="login" element={<LoginPage />} />
       <Route path="signup" element={<SignUpPage />} />
-      <Route path ="user/verification" element ={<EmailVerification />} />
+      <Route path ="api/verify" element ={<EmailVerification />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes></>
