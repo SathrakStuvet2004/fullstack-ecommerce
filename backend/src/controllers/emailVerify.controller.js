@@ -9,7 +9,7 @@ export const emailVerify = (req, res) => {
       errorResponse(
         res,
         401,
-        "Unauthorized. Please log in."
+        "Unauthorized. Please signUp."
       )
     }
     return (

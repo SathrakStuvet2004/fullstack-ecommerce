@@ -8,9 +8,6 @@ export const loginUser = (data, callback) => {
 
   db.query(sql, [data.email], (err, result) => {
 
-    console.log('err',err)
-    console.log('result',result)
-
     if (err) {
       return callback(err, null);
     }
@@ -18,13 +15,17 @@ export const loginUser = (data, callback) => {
     const user = result[0];
 
     if (!user) {
-      return callback(new Error("you Don't have an account"), null);
+      return callback(new Error(" please signUp "), null);
     }
 
     const isPasswordValid = bcrypt.compareSync(data.password, user.password);
 
     if (!isPasswordValid) {
       return callback(new Error("invalid email or password"), null);
+    }
+
+    if (!user.is_verified) {
+      return callback(new Error("check your email for verification"))
     }
 
     return callback(null, user);

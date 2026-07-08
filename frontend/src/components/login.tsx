@@ -3,9 +3,10 @@ import TextField from '@mui/material/TextField';
 import { Typography } from "@mui/material";
 import GameButton from "../buttons/GameButton";
 import "../css/login.css";
-import { useState } from 'react';
-import { login } from '../services/auth.services';
+import { useEffect, useState } from 'react';
+//import { login } from '../services/auth.services';
 import { toast } from 'react-toastify';
+import { useLogin } from '../hoocks/hoock';
 
 
 export default function Login() {
@@ -13,17 +14,28 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async() => {
-   
-    const resutl = await login(email , password);
+  const { mutate: userLogin, isSuccess, } = useLogin()
 
-    if(resutl.success){
-      return toast.success(resutl.message)
-    }
-    else{
-      return toast.error(resutl.message);
-    }
+  const handleLogin = async () => {
+    /* the below line do auth in front end by using firebase
+     const resutl = await login(email , password);
+ 
+     if(resutl.success){
+       return toast.success(resutl.message)
+     }
+     else{
+       return toast.error(resutl.message);
+     }
+     */
+
+    userLogin({ email, password })
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("login successfully")
+    }
+  }, [isSuccess])
 
   return (
     <>

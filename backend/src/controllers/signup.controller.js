@@ -10,7 +10,7 @@ export const createUser = (req, res) => {
         return errorResponse(
           res,
           409,
-          'user already exist'
+          'user already exist.'
         )
       }
       return errorResponse(

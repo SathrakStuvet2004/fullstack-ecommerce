@@ -76,7 +76,7 @@ export const useVerify = () => {
   });
 };
 
-export const useLoginUser = () => {
+export const useLogin = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -88,7 +88,7 @@ export const useLoginUser = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["users"],
+        queryKey: ["login"],
       });
     },
 
