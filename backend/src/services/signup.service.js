@@ -1,8 +1,6 @@
 import bcrypt from "bcryptjs";
 import db from "../config/db.js";
-import { generateToken } from '../utils/token.js'
 import { hashPassword } from "../utils/bcrypt.js";
-import { addMinutes } from "../utils/date.js";
 import { sendMail } from "../services/mail.service.js";
 import crypto from "crypto";
 

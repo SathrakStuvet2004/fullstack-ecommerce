@@ -3,9 +3,9 @@ import { successResponse, errorResponse } from "../utils/response.js";
 
 export const loginUser = (req, res) => {
   
-  loginService.loginUser(req.body,
+  loginService.loginUser(req.body,res,
     (err, user) => {
-      console.log(err);
+
       if (err) {
         return errorResponse(res, 401, err.message)
       }

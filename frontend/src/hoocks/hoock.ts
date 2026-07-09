@@ -10,6 +10,7 @@ export const fetcher = async (
 ) => {
   const response = await fetch(`${API_URL}${url}`, {
     ...options,
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
       ...(options.headers || {}),
