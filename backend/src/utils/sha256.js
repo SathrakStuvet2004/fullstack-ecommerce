@@ -1,3 +1,5 @@
-export const addMinutes = (minutes) => {
-  return new Date(Date.now() + minutes * 60 * 1000);
+import crypto from "crypto";
+
+export const hashToken = (token) => {
+  return crypto.createHash("sha256").update(token).digest("hex");
 };

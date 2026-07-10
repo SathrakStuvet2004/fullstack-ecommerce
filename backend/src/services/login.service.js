@@ -2,12 +2,11 @@ import { data } from 'react-router';
 import db from '../config/db.js';
 import bcrypt from 'bcryptjs';
 import { GenerateAccessToken, GenerateRefreshToken } from '../utils/token.js'
+import { hashToken } from '../utils/sha256.js';
 
 export const loginUser = (data, res, callback) => {
 
   const sql = `select * from users where email = ?`;
-
-  let user = [];
 
   db.query(sql, [data.email], (err, result) => {
 
@@ -15,7 +14,7 @@ export const loginUser = (data, res, callback) => {
       return callback(err, null);
     }
 
-    let user = result[0];
+    const user = result[0];
 
     if (!user) {
       return callback(new Error(" please signUp "), null);
@@ -33,11 +32,13 @@ export const loginUser = (data, res, callback) => {
 
     let ref_token = GenerateRefreshToken({ id: user.id, role: user.role })
 
+    const hasd_ref_token = hashToken(ref_token);
+
     const insertTokenSql = `update users
     set ref_token = ?
     where id = ?`
 
-    db.query(insertTokenSql, [ref_token, user.id], (err, result) => {
+    db.query(insertTokenSql, [hasd_ref_token, user.id], (err, result) => {
       if (err) {
         return callback(err)
       }
