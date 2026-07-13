@@ -10,4 +10,6 @@ const connection = mysql.createConnection({
   database: process.env.DB_NAME,
 });
 
+export const promiseDb = connection.promise();
+
 export default connection;

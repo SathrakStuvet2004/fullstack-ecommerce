@@ -1,5 +1,5 @@
 import * as userService from "../services/user.service.js";
-import {successResponse,errorResponse,} from "../utils/response.js";
+import { successResponse, errorResponse, } from "../utils/response.js";
 
 export const getUsers = (req, res) => {
   userService.getUsers((err, result) => {
@@ -53,7 +53,7 @@ export const createUser = (req, res) => {
   userService.createUser(req.body, (err, result) => {
 
     if (err) {
-      if(err.code === "ER_DUP_ENTRY"){
+      if (err.code === "ER_DUP_ENTRY") {
         return errorResponse(
           res,
           400,
