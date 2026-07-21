@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 //import { login } from '../services/auth.services';
 import { toast } from 'react-toastify';
 import { useLogin } from '../hoocks/hoock';
+import { useNavigate } from 'react-router';
 
 
 export default function Login() {
@@ -14,7 +15,9 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { mutate: userLogin, isSuccess, } = useLogin()
+  const { mutate: userLogin, isSuccess } = useLogin()
+
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     /* the below line do auth in front end by using firebase
@@ -34,6 +37,13 @@ export default function Login() {
   useEffect(() => {
     if (isSuccess) {
       toast.success("login successfully")
+
+      setEmail("");
+      setPassword("")
+
+      setTimeout(()=>{
+        navigate("/")
+      },4000)
     }
   }, [isSuccess])
 
@@ -101,7 +111,7 @@ export default function Login() {
 
         <div className="signup-Link">
           <p>if u don't have an account, click here to sign up
-            <button className="SignUp-button">
+            <button className="SignUp-button" onClick={() => { navigate("/signup") }}>
               signUp
             </button>
           </p>

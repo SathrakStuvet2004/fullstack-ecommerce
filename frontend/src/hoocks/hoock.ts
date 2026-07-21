@@ -40,8 +40,7 @@ export const usePostUser = () => {
         body: JSON.stringify(newUser),
       }),
 
-    onSuccess: (data) => {
-      toast.success(data.message)
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["users"],
       });
@@ -94,8 +93,21 @@ export const useLogin = () => {
     },
 
     onError: (error: Error) => {
-      toast.error(error.message);
+
+      setTimeout(() => {
+        toast.error(error.message);
+      }, 1000)
+
     },
+  });
+};
+
+export const useAuthMe = () => {
+  return useQuery({
+    queryKey: ["authme"],
+    queryFn: () => fetcher("/api/auth/me"),
+    staleTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false,
   });
 };
 

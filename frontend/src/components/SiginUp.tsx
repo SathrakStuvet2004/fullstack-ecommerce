@@ -1,10 +1,8 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-//import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, } from "@mui/material";
 import GameButton from "../buttons/GameButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify"
-//import { register } from '../services/auth.services';
 import "../css/signup.css";
 import { useNavigate } from 'react-router-dom';
 import { usePostUser } from '../hoocks/hoock';
@@ -15,7 +13,7 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { mutate: adduser } = usePostUser()
+  const { mutate: adduser, isPending, isSuccess, isError } = usePostUser()
 
   const navigate = useNavigate()
 
@@ -24,22 +22,32 @@ export default function SignUp() {
     if (name.length === 0 || email.length === 0 || password.length === 0) {
       return toast.error("Please fill all the fields");
     }
-
     adduser({ name, email, password })
-
-    
-
-
-    /* auth in frontend
-    const result = await register(email, password);
-
-    toast.dark(result.message);
-    */
-
   };
 
-  const navToLogin = () => {
+  useEffect(() => {
 
+    if (isPending) {
+      toast.loading("loading", { toastId: "signup" })
+    }
+
+    if (isSuccess) {
+      toast.dismiss("signup")
+
+      setEmail("");
+      setName("");
+      setPassword("");
+    }
+
+  }, [isPending, isSuccess])
+
+  useEffect(() => {
+    if (isError) {
+      toast.dismiss("signup")
+    }
+  },[isError])
+
+  const navToLogin = () => {
     navigate("/login")
   }
 
@@ -90,32 +98,8 @@ export default function SignUp() {
               </div>
             </Box>
           </div>
-          {/* <div className="role-selector-container">
-            <FormControl>
-              <FormLabel>Select Role</FormLabel>
-
-              <RadioGroup
-                row
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-              >
-                <FormControlLabel
-                  value="user"
-                  control={<Radio />}
-                  label="User"
-                />
-
-                <FormControlLabel
-                  value="seller"
-                  control={<Radio />}
-                  label="Seller"
-                />
-              </RadioGroup>
-            </FormControl>
-            
-          </div> */}
           <div className="button">
-            <GameButton variant="positive" onClick={handleSignUp}>
+            <GameButton variant="positive" onClick={handleSignUp} disabled={isPending}>
               sign up
             </GameButton>
           </div>
