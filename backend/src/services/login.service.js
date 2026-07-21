@@ -57,6 +57,6 @@ export const loginUser = (data, res, callback) => {
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
     });
-    return callback(null, user);
+    return callback(null);
   });
 };

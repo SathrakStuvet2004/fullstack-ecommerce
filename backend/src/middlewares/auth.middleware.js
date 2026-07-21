@@ -3,7 +3,6 @@ import { GenerateAccessToken, verifyAccessToken, verifyRefreshToken } from "../u
 import db from '../config/db.js';
 import { promiseDb } from "../config/db.js";
 import { errorResponse } from "../utils/response.js";
-import { Query } from "@tanstack/react-query";
 
 const auth = async (req, res, next) => {
 
