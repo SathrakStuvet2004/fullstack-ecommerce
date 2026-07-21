@@ -2,7 +2,10 @@ import * as userService from "../services/user.service.js";
 import { successResponse, errorResponse, } from "../utils/response.js";
 
 export const getUsers = (req, res) => {
-  userService.getUsers((err, result) => {
+  
+  const user = req.user
+
+  userService.getUsers(user,(err, result) => {
     if (err) {
       return errorResponse(
         res,
@@ -64,7 +67,6 @@ export const createUser = (req, res) => {
         res,
         500,
         "Failed to create user",
-        console.log(err)
       );
     }
 

@@ -1,6 +1,7 @@
 import db from "../config/db.js";
 
-export const getUsers = (callback) => {
+export const getUsers = (user, callback) => {
+  console.log("inside the user service",user)
   const sql = "SELECT * FROM users";
 
   db.query(sql, callback);

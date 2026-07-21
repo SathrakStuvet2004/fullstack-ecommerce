@@ -44,7 +44,7 @@ export const loginUser = (data, res, callback) => {
       }
     })
 
-    const acc_tocken = GenerateAccessToken({ id: user.id })
+    const acc_tocken = GenerateAccessToken({ id: user.id, role: user.role })
 
     res.cookie("accessToken", acc_tocken, {
       httpOnly: true,
@@ -57,6 +57,6 @@ export const loginUser = (data, res, callback) => {
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
     });
-    return callback(null);
+    return callback(null, user);
   });
 };

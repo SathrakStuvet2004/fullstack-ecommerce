@@ -3,58 +3,61 @@ import { GenerateAccessToken, verifyAccessToken, verifyRefreshToken } from "../u
 import db from '../config/db.js';
 import { promiseDb } from "../config/db.js";
 import { errorResponse } from "../utils/response.js";
+import { Query } from "@tanstack/react-query";
 
 const auth = async (req, res, next) => {
 
-  const ref_token = req.cookies.refreshToken
+  const ref_token = req.cookies.refreshToken;
 
-  const acc_token = req.cookies.accessToken
+  const acc_token = req.cookies.accessToken;
 
-  if (!ref_token) {
-    return errorResponse(res, 401, "Unauthorized")
-  }
+  const is_acc_TokenValid = verifyAccessToken(acc_token)
 
-  if (ref_token && !acc_token) {
+  req.user = { id: is_acc_TokenValid.id, role: is_acc_TokenValid.role };
 
-    const hashed_ref_token = hashToken(ref_token);
+  if (!is_acc_TokenValid) {
 
-    const sql = `select * from users where ref_token = ?`
+    const is_ref_TokenValid = verifyRefreshToken(ref_token)
 
-    const [result] = await promiseDb.query(sql, [hashed_ref_token])
-
-    const user = result[0]
-
-    const db_ref_token = user.ref_token
-
-    if (hashed_ref_token !== db_ref_token) {
-      return errorResponse(res, 401, "Unauthorized")
+    if (!is_ref_TokenValid) {
+      return errorResponse(res, 401, 'unauth')
     }
 
-    if (hashed_ref_token === db_ref_token) {
+    if (!is_acc_TokenValid && is_ref_TokenValid) {
 
-      const is_refershTokenValid = verifyRefreshToken(ref_token)
+      const user_id = is_ref_TokenValid.id
 
-      const new_acc_token = GenerateAccessToken({ id: is_refershTokenValid.id, role: is_refershTokenValid.role })
+      const hashed_ref_token = hashToken(ref_token)
 
-      const verify_new_acc_token = verifyAccessToken(new_acc_token)
+      const query = ` select * from users where id = ?`;
 
-      console.log(verify_new_acc_token)
+      const [user] = await promiseDb.query(query, [user_id])
 
-      res.cookie("accessToken", new_acc_token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
-      });
+      const current_user = user[0];
 
-      req.userId = is_refershTokenValid.id;
-      req.userRole = is_refershTokenValid.role;
+      const db_ref_token = current_user.ref_token
+
+      if (hashed_ref_token != db_ref_token) {
+        
+        return errorResponse(res, 401, 'unauth')
+      }
+
+      const input_for_new_acc_token = { id: current_user.id, role: current_user.role }
+
+      if (hashed_ref_token === db_ref_token) {
+
+        const new_acc_token = GenerateAccessToken(input_for_new_acc_token)
+
+        res.cookie("accessToken", new_acc_token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+        });
+        req.user = { id: current_user.id, role: current_user.role }
+      }
+
     }
   }
-
-  const is_valid_refresh_token = verifyRefreshToken(ref_token);
-
-  req.userId = is_valid_refresh_token.id
-  req.userRole = is_valid_refresh_token.role
 
   next();
 };
