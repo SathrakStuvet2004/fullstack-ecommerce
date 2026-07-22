@@ -5,8 +5,6 @@ export const createUser = (req, res) => {
 
   signupService.createUser(req.body, (err, result) => {
 
-    console.log(req.body)
-
     if (err) {
       if (err.code === 'ER_DUP_ENTRY') {
         return errorResponse(
