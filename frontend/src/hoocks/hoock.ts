@@ -47,7 +47,10 @@ export const usePostUser = () => {
     },
 
     onError: (error: Error) => {
-      toast.error(error.message);
+      setTimeout(() => {
+        toast.error(error.message)
+      }, 3000)
+
     },
   });
 };
@@ -70,7 +73,7 @@ export const useVerify = () => {
     },
 
     onError: (error: Error) => {
-      console.log(error)
+
       toast.error(error.message);
     },
   });
@@ -108,6 +111,7 @@ export const useAuthMe = () => {
     queryFn: () => fetcher("/api/auth/me"),
     staleTime: 1000 * 60 * 5,
     refetchOnWindowFocus: false,
+    retry: false
   });
 };
 

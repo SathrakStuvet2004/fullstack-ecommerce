@@ -5,162 +5,116 @@
   justify-content: center;
   align-items: center;
   padding: 30px 20px;
+  background: var(--background);
 }
 
-.signup>p {
-  font-family: "Orbitron", sans-serif;
-  font-size: 2.6rem;
+.signup > p {
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 2.2rem;
   font-weight: 700;
-  color: #00d9ff;
-  text-shadow:
-    0 0 8px #00d9ff,
-    0 0 20px rgba(0, 117, 155, .2);
+  color: var(--text);
   margin-bottom: 25px;
 }
 
 .user-information {
-
   width: 100%;
   max-width: 480px;
 
-  background: #131a29;
+  background: var(--surface);
 
-  border: 1px solid rgba(255, 255, 255, .08);
-  border-radius: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 
   padding: 28px;
 
+  box-shadow: 0 10px 30px var(--shadow);
 }
 
 .signup-form {
-
   display: flex;
   flex-direction: column;
   gap: 14px;
-
 }
 
 .name,
 .email,
 .password {
-
   width: 100%;
-
 }
 
 .name .MuiTextField-root,
 .email .MuiTextField-root,
 .password .MuiTextField-root {
-
   width: 100%;
-
 }
 
+
 .MuiOutlinedInput-root {
-
-  color: white !important;
-  border-radius: 14px !important;
-
+  color: var(--text) !important;
+  border-radius: var(--radius) !important;
 }
 
 .MuiOutlinedInput-input {
-
   padding: 15px !important;
-  font-size: 17px;
-
+  font-size: 16px;
 }
 
 .MuiInputLabel-root {
-
-  color: #00d9ff !important;
-
+  color: var(--text-secondary) !important;
 }
 
 .MuiInputLabel-root.Mui-focused {
-
-  color: #00ffff !important;
-
+  color: var(--primary) !important;
 }
 
 .MuiOutlinedInput-notchedOutline {
-
-  border-color: #00d9ff !important;
-
+  border-color: var(--border) !important;
 }
 
 .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-
-  border-color: #00ffff !important;
-
+  border-color: var(--primary) !important;
 }
 
 .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-
   border-width: 2px !important;
-  border-color: #00ffff !important;
-
+  border-color: var(--primary) !important;
 }
 
+
 .role-selector-container {
-
   margin: 22px 0 18px;
-
 }
 
 .role-selector-container .MuiFormControl-root {
-
   width: 100%;
   align-items: center;
-
 }
 
 .role-selector-container .MuiFormLabel-root {
-
-  color: #00d9ff !important;
-  font-family: "Orbitron";
-  font-size: 18px;
+  color: var(--text-secondary) !important;
+  font-size: 17px;
+  font-weight: 600;
   margin-bottom: 12px;
-
 }
 
 .role-selector-container .MuiRadioGroup-root {
-
   flex-direction: row;
   gap: 35px;
-
 }
 
 .role-selector-container .MuiFormControlLabel-label {
-
-  color: white;
-  font-size: 17px;
-
+  color: var(--text);
+  font-size: 16px;
 }
 
 .MuiRadio-root {
-
-  color: #00d9ff !important;
-
+  color: var(--text-secondary) !important;
 }
 
 .MuiRadio-root.Mui-checked {
-
-  color: #00ffff !important;
-
+  color: var(--primary) !important;
 }
 
-.button {
-
-  margin-top: 10px;
-
-}
-
-.button button {
-
-  width: 100%;
-  height: 55px;
-
-}
 
 .button {
   margin-top: 10px;
@@ -169,17 +123,16 @@
 .button button {
   width: 100%;
   height: 55px;
+  border-radius: var(--radius);
 }
 
 .signup-link {
   margin-top: 20px;
   text-align: center;
-  position: relative;
-  z-index: 10;
 }
 
 .signup-link p {
-  color: #cbd5e1;
+  color: var(--text-secondary);
   font-size: 15px;
 }
 
@@ -189,7 +142,7 @@
   margin-left: 6px;
   padding: 0;
 
-  color: #00d9ff;
+  color: var(--primary);
   font-size: 15px;
   font-weight: 600;
 
@@ -198,34 +151,25 @@
 }
 
 .signup-link button:hover {
-  color: #00ffff;
+  color: var(--primary-hover);
   text-decoration: underline;
 }
 
+
 @media (max-width: 600px) {
-
   .signup {
-
     padding: 20px 15px;
-
   }
 
-  .signup>p {
-
-    font-size: 2rem;
-
+  .signup > p {
+    font-size: 1.9rem;
   }
 
   .user-information {
-
     padding: 22px;
-
   }
 
   .role-selector-container .MuiRadioGroup-root {
-
     gap: 20px;
-
   }
-
 }

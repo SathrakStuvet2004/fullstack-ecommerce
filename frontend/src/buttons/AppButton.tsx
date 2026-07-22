@@ -1,21 +1,21 @@
-import "./GameButton.css";
+import "./AppButton.css";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-interface GameButtonProps
+interface AppButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  variant?: "positive" | "negative";
+  variant?: "primary" | "secondary" | "success" | "danger";
 }
 
-export default function GameButton({
+export default function AppButton({
   children,
-  variant = "positive",
+  variant = "primary",
   className = "",
   ...props
-}: GameButtonProps) {
+}: AppButtonProps) {
   return (
     <button
-      className={`game-button ${variant} ${className}`}
+      className={`app-button ${variant} ${className}`}
       {...props}
     >
       {children}

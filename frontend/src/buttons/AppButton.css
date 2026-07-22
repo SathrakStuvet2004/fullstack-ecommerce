@@ -1,0 +1,74 @@
+.app-button {
+  width: 100%;
+  height: 52px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  border-radius: var(--radius);
+
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.app-button.primary {
+  background: var(--primary);
+  color: #ffffff;
+
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.app-button.primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.app-button.primary:active {
+  transform: scale(0.98);
+}
+
+.app-button.secondary {
+  background: transparent;
+  color: var(--text);
+
+  border: 1px solid var(--border);
+}
+
+.app-button.secondary:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.app-button.success {
+  background: var(--success);
+  color: white;
+}
+
+.app-button.success:hover {
+  filter: brightness(0.95);
+}
+
+.app-button.danger {
+  background: var(--danger);
+  color: white;
+}
+
+.app-button.danger:hover {
+  filter: brightness(0.95);
+}
+
+.app-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

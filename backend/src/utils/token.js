@@ -1,25 +1,24 @@
 import jwt from "jsonwebtoken";
 import { errorResponse } from "./response.js";
 
-export const GenerateRefreshToken = (payload, expiresIn = "7d") => {
+export const GenerateRefreshToken = (payload, expiresIn = "1m") => {
 
   return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
     expiresIn,
   });
 };
 
-export const GenerateAccessToken = (payload, expiresIn = "15m") => {
+export const GenerateAccessToken = (payload, expiresIn = "1m") => {
   
   return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
     expiresIn,
   });
 };
-
-
+ 
 export const verifyRefreshToken = (token) => {
   try {
     return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
-  } catch (err) {
+  } catch (err) {   
     return false
   }
 };

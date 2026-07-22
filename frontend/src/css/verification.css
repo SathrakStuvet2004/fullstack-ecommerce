@@ -3,86 +3,116 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  background: var(--background);
 }
 
 .verification-card {
   width: 100%;
   max-width: 480px;
-  background: #131a29;
-  border: 1px solid rgba(255, 255, 255, .08);
-  border-radius: 18px;
-  padding: 40px 30px;
+  padding: 36px 30px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  box-shadow: 0 10px 30px var(--shadow);
+
   text-align: center;
 }
 
 .verification-title {
-  font-family: "Orbitron", sans-serif;
-  font-size: 2.2rem;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 2rem;
   font-weight: 700;
-  color: #00d9ff;
-  text-shadow:
-    0 0 8px #00d9ff,
-    0 0 20px rgba(0, 117, 155, .2);
-  margin-bottom: 25px;
+  color: var(--text);
+  margin-bottom: 20px;
 }
 
 .verification-text {
-  color: #cbd5e1;
-  font-size: 17px;
+  margin-top: 18px;
+  color: var(--text-secondary);
+  font-size: 16px;
   line-height: 1.6;
-  margin-top: 20px;
 }
 
 .spinner {
-  width: 70px;
-  height: 70px;
+  width: 64px;
+  height: 64px;
+
   margin: 0 auto;
-  border: 6px solid rgba(255, 255, 255, .08);
-  border-top: 6px solid #00d9ff;
-  border-right: 6px solid #00ffff;
+
+  border: 5px solid var(--border);
+  border-top: 5px solid var(--primary);
+
   border-radius: 50%;
-  animation: spin 0.9s linear infinite;
-  box-shadow:
-    0 0 12px #00d9ff,
-    0 0 25px rgba(0, 217, 255, .35);
+
+  animation: spin 0.8s linear infinite;
 }
 
 .success-icon {
-  width: 75px;
-  height: 75px;
+  width: 72px;
+  height: 72px;
+
   margin: 0 auto;
+
   border-radius: 50%;
-  background: #00d9ff;
-  color: #131a29;
-  font-size: 42px;
-  font-weight: bold;
+
+  background: var(--success);
+  color: white;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow:
-    0 0 15px #00d9ff,
-    0 0 35px rgba(0, 217, 255, .5);
+
+  font-size: 34px;
+  font-weight: 700;
 }
 
 .error-icon {
-  width: 75px;
-  height: 75px;
+  width: 72px;
+  height: 72px;
+
   margin: 0 auto;
+
   border-radius: 50%;
-  background: #ff4d4d;
+
+  background: var(--danger);
   color: white;
-  font-size: 42px;
-  font-weight: bold;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow:
-    0 0 15px #ff4d4d,
-    0 0 35px rgba(255, 77, 77, .5);
+
+  font-size: 34px;
+  font-weight: 700;
 }
 
 @keyframes spin {
-  100% {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
     transform: rotate(360deg);
+  }
+}
+
+
+@media (max-width: 480px) {
+  .verification-card {
+    padding: 28px 22px;
+  }
+
+  .verification-title {
+    font-size: 1.7rem;
+  }
+
+  .spinner,
+  .success-icon,
+  .error-icon {
+    width: 60px;
+    height: 60px;
   }
 }

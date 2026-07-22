@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import GameButton from "../buttons/GameButton";
+import GameButton from "../buttons/AppButton";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify"
 import "../css/signup.css";
 import { useNavigate } from 'react-router-dom';
 import { usePostUser } from '../hoocks/hoock';
+import { notify } from '../utils/toster';
 
 export default function SignUp() {
 
@@ -20,7 +20,7 @@ export default function SignUp() {
   const handleSignUp = async () => {
 
     if (name.length === 0 || email.length === 0 || password.length === 0) {
-      return toast.error("Please fill all the fields");
+      return notify.error("Please fill all the fields");
     }
     adduser({ name, email, password })
   };
@@ -28,11 +28,12 @@ export default function SignUp() {
   useEffect(() => {
 
     if (isPending) {
-      toast.loading("loading", { toastId: "signup" })
+      notify.loading("loading", "signup")
     }
 
     if (isSuccess) {
-      toast.dismiss("signup")
+      notify.dismiss("signup")
+      notify.success("please check your mail for verification")
 
       setEmail("");
       setName("");
@@ -43,9 +44,12 @@ export default function SignUp() {
 
   useEffect(() => {
     if (isError) {
-      toast.dismiss("signup")
+      setTimeout(() => {
+        notify.dismiss("signup")
+      }, 3000)
+
     }
-  },[isError])
+  }, [isError])
 
   const navToLogin = () => {
     navigate("/login")
@@ -99,7 +103,7 @@ export default function SignUp() {
             </Box>
           </div>
           <div className="button">
-            <GameButton variant="positive" onClick={handleSignUp} disabled={isPending}>
+            <GameButton  onClick={handleSignUp} disabled={isPending}>
               sign up
             </GameButton>
           </div>

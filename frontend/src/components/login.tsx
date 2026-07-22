@@ -1,13 +1,14 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Typography } from "@mui/material";
-import GameButton from "../buttons/GameButton";
+
 import "../css/login.css";
 import { useEffect, useState } from 'react';
 //import { login } from '../services/auth.services';
-import { toast } from 'react-toastify';
 import { useLogin } from '../hoocks/hoock';
 import { useNavigate } from 'react-router';
+import AppButton from '../buttons/AppButton';
+import { notify } from '../utils/toster';
 
 
 export default function Login() {
@@ -36,14 +37,14 @@ export default function Login() {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("login successfully")
+      notify.success("login successfully")
 
       setEmail("");
       setPassword("")
 
-      setTimeout(()=>{
+      setTimeout(() => {
         navigate("/")
-      },4000)
+      }, 4000)
     }
   }, [isSuccess])
 
@@ -102,10 +103,12 @@ export default function Login() {
             </Box>
           </div>
           <div className="button">
-            <GameButton variant="positive"
+            <AppButton
               onClick={handleLogin}>
               Login
-            </GameButton>
+            </AppButton>
+
+
           </div>
         </div>
 
