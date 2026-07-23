@@ -104,7 +104,6 @@ export const useLogin = () => {
     },
 
     onError: (error: Error) => {
-
       notify.error(error.message);
     },
   });

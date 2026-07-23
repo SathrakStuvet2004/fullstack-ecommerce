@@ -3,6 +3,9 @@ import { useAuthMe } from "../hoocks/hoock"
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { useDispatch } from "react-redux";
+import { setUser } from "../slice/AuthSlice";
+import { notify } from "../utils/toster";
 
 
 export default function HomePage() {
@@ -12,6 +15,8 @@ export default function HomePage() {
   const navigate = useNavigate()
 
   const [isVerified, setIsVerified] = useState(false)
+
+  const dipatch = useDispatch()
 
   useEffect(() => {
 
@@ -38,7 +43,27 @@ export default function HomePage() {
 
     if (isSuccess) {
 
-      console.log("inise the success",data.data)
+      const user = data.data;
+
+      dipatch(setUser(user));
+
+      const role = user.role
+
+      console.log(role)
+
+      switch (role) {
+        case "admin":
+          notify.success("welcom admin")
+          break
+
+        case "doctor":
+          notify.success("welcom doctor")
+          break
+
+        case "Patient":
+          notify.success("welcom Patient")
+          break
+      }
 
       setTimeout(() => {
         setIsVerified(true)
@@ -47,15 +72,12 @@ export default function HomePage() {
 
   }, [isLoading, isSuccess, isError])
 
-
   return (
     <>
       {isVerified ?
         (
           <div>
-
             verified
-
           </div>
 
         ) : (
