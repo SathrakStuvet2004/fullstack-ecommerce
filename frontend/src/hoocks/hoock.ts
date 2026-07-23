@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient, } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import { notify } from "../utils/toster";
+
 
 
 const API_URL = "http://localhost:3000";
@@ -48,8 +49,15 @@ export const usePostUser = () => {
 
     onError: (error: Error) => {
       setTimeout(() => {
-        toast.error(error.message)
-      }, 3000)
+
+        if (error.message === "Too small: expected string to have >=8 characters") {
+          return notify.error("password must have 8 characters")
+        }
+        if (error.message === "Too small: expected string to have >=3 characters") {
+          return notify.error("Name have atleast 3 characters")
+        }
+        notify.error(error.message)
+      }, 2000)
 
     },
   });
@@ -66,7 +74,7 @@ export const useVerify = () => {
       }),
 
     onSuccess: (data) => {
-      toast.success(data.message)
+      notify.success(data.message)
       queryClient.invalidateQueries({
         queryKey: ["verifyusers"],
       });
@@ -74,7 +82,7 @@ export const useVerify = () => {
 
     onError: (error: Error) => {
 
-      toast.error(error.message);
+      notify.error(error.message);
     },
   });
 };
@@ -97,10 +105,7 @@ export const useLogin = () => {
 
     onError: (error: Error) => {
 
-      setTimeout(() => {
-        toast.error(error.message);
-      }, 1000)
-
+      notify.error(error.message);
     },
   });
 };

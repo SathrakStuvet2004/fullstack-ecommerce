@@ -4,8 +4,6 @@ export const validate = (schema) => (req, res, next) => {
 
   const result = schema.safeParse(req.body);
 
-  console.log(result)
-
   if (!result.success) {
 
     const err_message = result.error.issues[0].message

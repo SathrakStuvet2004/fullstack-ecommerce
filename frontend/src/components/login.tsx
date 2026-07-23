@@ -44,7 +44,7 @@ export default function Login() {
 
       setTimeout(() => {
         navigate("/")
-      }, 4000)
+      }, 3000)
     }
   }, [isSuccess])
 

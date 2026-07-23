@@ -46,7 +46,7 @@ export default function SignUp() {
     if (isError) {
       setTimeout(() => {
         notify.dismiss("signup")
-      }, 3000)
+      }, 2000)
 
     }
   }, [isError])

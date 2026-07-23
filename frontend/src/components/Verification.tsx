@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useVerify } from "../hoocks/hoock";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
+import "../css/verification.css"
+
 export default function Verification() {
   const [searchParams] = useSearchParams();
 
@@ -58,6 +60,24 @@ export default function Verification() {
             {isError &&
               "Verification failed. The verification link is invalid or has expired."}
           </p>
+
+          {isPending && (
+            <div className="status-label status-loading">
+              Verifying...
+            </div>
+          )}
+
+          {isSuccess && (
+            <div className="status-label status-success">
+              ✓ Verified Successfully
+            </div>
+          )}
+
+          {isError && (
+            <div className="status-label status-error">
+              ✕ Verification Failed
+            </div>
+          )}
 
         </div>
       </div>
