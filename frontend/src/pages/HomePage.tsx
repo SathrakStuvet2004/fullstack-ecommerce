@@ -52,12 +52,13 @@ export default function HomePage() {
       console.log(role)
 
       switch (role) {
-        case "admin":
-          notify.success("welcom admin")
+        case "Admin":
+          notify.success("welcom Admin")
+          navigate("/admin")
           break
 
-        case "doctor":
-          notify.success("welcom doctor")
+        case "Doctor":
+          notify.success("welcom Doctor")
           break
 
         case "Patient":
