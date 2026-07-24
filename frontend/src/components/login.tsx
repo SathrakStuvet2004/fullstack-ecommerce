@@ -41,10 +41,6 @@ export default function Login() {
 
       setEmail("");
       setPassword("")
-
-      setTimeout(() => {
-        navigate("/")
-      }, 3000)
     }
   }, [isSuccess])
 

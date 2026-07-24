@@ -1,10 +1,4 @@
 import "../../../css/QuickAction.css";
-import {
-  FaUserMd,
-  FaUserPlus,
-  FaCalendarPlus,
-  FaHospital,
-} from "react-icons/fa";
 
 interface Action {
   id: number;

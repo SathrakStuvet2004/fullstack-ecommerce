@@ -1,5 +1,8 @@
 import { useQuery, useMutation, useQueryClient, } from "@tanstack/react-query";
 import { notify } from "../utils/toster";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { setUser } from "../slice/AuthSlice";
 
 
 
@@ -89,6 +92,8 @@ export const useVerify = () => {
 
 export const useLogin = () => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   return useMutation({
     mutationFn: (loginData: any) =>
@@ -97,10 +102,18 @@ export const useLogin = () => {
         body: JSON.stringify(loginData),
       }),
 
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: ["login"],
       });
+      console.log(data.data)
+      dispatch(setUser(data.data))
+
+      setTimeout(() => {
+        if (data.data.role === "Admin") {
+          navigate("/admin")
+        }
+      }, 2000)
     },
 
     onError: (error: Error) => {
