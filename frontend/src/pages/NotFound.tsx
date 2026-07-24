@@ -1,32 +1,33 @@
 import { Link } from "react-router-dom";
+import { FaArrowLeft, FaHospitalAlt } from "react-icons/fa";
+import "../css/notfound.css";
 
-const NotFound = () => {
-
+export default function NotFound() {
   return (
-    <>
-      <title>404 Not Found</title>
-      <div className="flex h-screen items-center justify-center bg-slate-900 text-white">
-        <div className="text-center">
-          <h1 className="text-8xl font-bold text-sky-400">404</h1>
+    <div className="not-found">
 
-          <h2 className="mt-4 text-3xl font-semibold">
-            Page Not Found
-          </h2>
+      <div className="not-found-card">
 
-          <p className="mt-3 text-slate-400">
-            Sorry, the page you're looking for doesn't exist.
-          </p>
-
-          <Link
-            to="/"
-            className="mt-8 inline-block rounded-lg bg-sky-500 px-6 py-3 font-semibold text-slate-900 transition hover:bg-sky-400"
-          >
-            Back Home
-          </Link>
+        <div className="not-found-icon">
+          <FaHospitalAlt />
         </div>
-      </div>
-    </>
-  );
-};
 
-export default NotFound;
+        <h1>404</h1>
+
+        <h2>Page Not Found</h2>
+
+        <p>
+          The page you're looking for doesn't exist or has been moved.
+          Please check the URL or return to the dashboard.
+        </p>
+
+        <Link to="/" className="back-home-btn">
+          <FaArrowLeft />
+          Back to Home
+        </Link>
+
+      </div>
+
+    </div>
+  );
+}

@@ -6,6 +6,7 @@ import EmailVerification from "../pages/EmailVerification";
 import HomePage from "../pages/HomePage";
 import AdminRoute from "../auth/AdminAuth";
 import AdminLayout from "../layouts/AdminPageLayout";
+import Dashboard from "../pages/admin/Dashboard";
 
 export default function AppRoutes() {
   return (
@@ -16,9 +17,12 @@ export default function AppRoutes() {
         <Route path="api/verify" element={<EmailVerification />} />
         <Route path="" element={<HomePage />} />
 
-        <Route element={<AdminRoute />}>
-          <Route path="/admin/*" element={<AdminLayout />} />
-        </Route>
+<Route element={<AdminRoute />}>
+  <Route path="/admin" element={<AdminLayout />}>
+    <Route index element={<Dashboard />} />
+    <Route path="dashboard" element={<Dashboard />} />
+  </Route>
+</Route>
 
         <Route path="*" element={<NotFound />} />
       </Routes></>

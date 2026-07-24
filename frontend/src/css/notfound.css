@@ -1,0 +1,123 @@
+.not-found {
+  min-height: 100vh;
+  background: var(--background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.not-found-card {
+  width: 100%;
+  max-width: 560px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 32px var(--shadow);
+  padding: 50px 40px;
+  text-align: center;
+}
+
+.not-found-icon {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  background: rgba(0, 255, 213, 0.12);
+  color: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+}
+
+.not-found-card h1 {
+  margin: 0;
+  font-size: 100px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--primary);
+}
+
+.not-found-card h2 {
+  margin: 16px 0 12px;
+  color: var(--text);
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.not-found-card p {
+  margin: 0 0 36px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.back-home-btn,
+.back-home-btn:visited,
+.back-home-btn:hover,
+.back-home-btn:focus,
+.back-home-btn:active {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 14px 28px;
+
+  background: var(--primary);
+  color: #000;
+
+  border: none;
+  border-radius: 12px;
+
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+
+  transition: all 0.25s ease;
+}
+
+.back-home-btn:hover {
+  background: var(--primary-hover);
+  color: #000;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.back-home-btn:active {
+  transform: translateY(0);
+}
+
+.back-home-btn svg {
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .not-found-card {
+    padding: 36px 24px;
+  }
+
+  .not-found-icon {
+    width: 72px;
+    height: 72px;
+    font-size: 28px;
+  }
+
+  .not-found-card h1 {
+    font-size: 72px;
+  }
+
+  .not-found-card h2 {
+    font-size: 24px;
+  }
+
+  .not-found-card p {
+    font-size: 14px;
+  }
+
+  .back-home-btn {
+    width: 100%;
+  }
+}

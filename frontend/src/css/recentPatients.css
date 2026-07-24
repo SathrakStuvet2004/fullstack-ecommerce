@@ -1,0 +1,102 @@
+.recent-patients {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.card-header h3 {
+  color: var(--text);
+  font-size: 20px;
+}
+
+.view-all-btn {
+  border: none;
+  cursor: pointer;
+  background: var(--primary);
+  color: #000;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: .3s;
+}
+
+.view-all-btn:hover {
+  background: var(--primary-hover);
+}
+
+.patient-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.patient-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: .25s;
+}
+
+.patient-card:hover {
+  border-color: var(--primary);
+  background: rgba(255,255,255,.02);
+}
+
+.patient-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(0,255,213,.12);
+  color: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.patient-info {
+  flex: 1;
+}
+
+.patient-info h4 {
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.patient-info p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.patient-info span {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+@media (max-width:768px){
+
+.patient-card{
+    padding:12px;
+}
+
+.patient-avatar{
+    width:48px;
+    height:48px;
+    font-size:18px;
+}
+
+}
