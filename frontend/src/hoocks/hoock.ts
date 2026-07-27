@@ -106,7 +106,7 @@ export const useLogin = () => {
       queryClient.invalidateQueries({
         queryKey: ["login"],
       });
-      console.log(data.data)
+
       dispatch(setUser(data.data))
 
       setTimeout(() => {

@@ -1,16 +1,13 @@
 import { useSelector } from "react-redux";
-import {
-  FaSearch,
-  FaClipboardList,
-  FaBell,
-  FaPlus,
-  FaChevronDown,
-} from "react-icons/fa";
+import {FaSearch,FaClipboardList,FaBell,FaPlus,FaChevronDown,FaUserMd,FaUserNurse,FaUserInjured,} from "react-icons/fa";
 
 import "../../css/topbar.css";
+import { useNavigate } from "react-router";
 
 export default function TopNavbar() {
   const user = useSelector((state: any) => state.auth.user);
+
+  const navigate = useNavigate();
 
   return (
     <header className="top-navbar">
@@ -98,10 +95,29 @@ export default function TopNavbar() {
 
         </div>
 
-        <button className="quick-add">
-          <FaPlus />
-          <span>Quick Add</span>
-        </button>
+        <div className="quick-add-wrapper">
+          <button className="quick-add">
+            <FaPlus />
+            <span>Quick Add</span>
+          </button>
+
+          <div className="quick-add-dropdown">
+            <button onClick={()=>navigate("/admin/doctors/add")}>
+              <FaUserMd />
+              <span>Add Doctor</span>
+            </button>
+
+            <button>
+              <FaUserNurse />
+              <span>Add Receptionist</span>
+            </button>
+
+            <button>
+              <FaUserInjured />
+              <span>Add Patient</span>
+            </button>
+          </div>
+        </div>
 
         <div className="profile-dropdown">
 

@@ -33,7 +33,7 @@ export default function Dashboard() {
       subtitle: "Today's Schedule",
       trend: "-2%",
       trendType: "down" as const,
-      icon: <FaCalendarCheck />,
+      icon: <FaCalendarCheck />, 
     },
     {
       title: "Available Beds",

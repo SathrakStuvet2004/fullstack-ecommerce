@@ -5,6 +5,7 @@ import NotFound from "../pages/NotFound";
 import EmailVerification from "../pages/EmailVerification";
 import AdminLayout from "../layouts/AdminPageLayout";
 import Dashboard from "../pages/admin/Dashboard";
+import AddDoctor from "../pages/admin/doctors/AddDoctors";
 
 export default function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ export default function AppRoutes() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="doctors/add" element={<AddDoctor />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
