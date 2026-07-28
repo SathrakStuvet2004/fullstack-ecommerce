@@ -1,15 +1,16 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { Doctor } from "../../../types/doctorType";
+import { useGetDepartments } from "../../../hoocks/admin/adminFetcherHoocks";
 
 type Props = {
   doctor: Doctor;
   setDoctor: Dispatch<SetStateAction<Doctor>>;
 };
 
-export default function DoctorProfessional({
-  doctor,
-  setDoctor,
-}: Props) {
+export default function DoctorProfessional({ doctor, setDoctor, }: Props) {
+
+  const { data: departments } = useGetDepartments()
+
   return (
     <section className="form-card">
       <h2>Professional Information</h2>
@@ -23,15 +24,17 @@ export default function DoctorProfessional({
             onChange={(e) =>
               setDoctor({
                 ...doctor,
-                department: e.target.value,
+                department: Number(e.target.value),
               })
             }
           >
             <option value="">Select Department</option>
-            <option value="Cardiology">Cardiology</option>
-            <option value="Neurology">Neurology</option>
-            <option value="Orthopedics">Orthopedics</option>
-            <option value="Pediatrics">Pediatrics</option>
+
+            {departments?.data.filter((dept: any) => dept.is_active === 1).map((dept: any) => (
+              <option key={dept.dept_id} value={dept.dept_id}>
+                {dept.department_name}
+              </option>
+            ))}
           </select>
         </div>
 

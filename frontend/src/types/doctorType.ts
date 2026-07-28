@@ -6,7 +6,7 @@ export type Doctor = {
   dob: string;
   address: string;
 
-  department: string;
+  department: number;
   specialization: string;
   qualification: string;
   experience: number;

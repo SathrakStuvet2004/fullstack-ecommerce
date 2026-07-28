@@ -8,6 +8,7 @@ import "../../../css/addDoctors.css";
 
 
 export default function AddDoctor() {
+
   const [doctor, setDoctor] = useState<Doctor>({
     name: "",
     email: "",
@@ -16,7 +17,7 @@ export default function AddDoctor() {
     dob: "",
     address: "",
 
-    department: "",
+    department: 0,
     specialization: "",
     qualification: "",
     experience: 0,
@@ -57,7 +58,7 @@ export default function AddDoctor() {
             Cancel
           </button>
 
-          <button type="submit">  
+          <button type="submit">
             Save Doctor
           </button>
         </div>
