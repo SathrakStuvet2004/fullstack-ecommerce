@@ -1,38 +1,9 @@
-import { useQuery, useMutation, useQueryClient, } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { notify } from "../utils/toster";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setUser } from "../slice/AuthSlice";
-
-
-
-const API_URL = "http://localhost:3000";
-
-export const fetcher = async (
-  url: string,
-  options: RequestInit = {}
-) => {
-  const response = await fetch(`${API_URL}${url}`, {
-    ...options,
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      ...(options.headers || {}),
-    },
-  });
-
-  if (!response.ok) {
-    const error =
-      (await response.json().catch(() => null)) || {
-        message: "Request Failed",
-      };
-
-    throw new Error(error.message);
-  }
-
-  return response.json();
-};
-
+import { fetcher } from "../services/fetcher";
 
 export const usePostUser = () => {
   const queryClient = useQueryClient();
