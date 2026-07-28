@@ -33,7 +33,7 @@ export default function AddDoctor() {
     <div className="add-doctor">
       <div className="page-header">
         <h1>Add Doctor</h1>
-        <p>Create a new doctor account.</p>
+        <p>Create a new doctor account</p>
       </div>
 
       <form>
@@ -57,7 +57,7 @@ export default function AddDoctor() {
             Cancel
           </button>
 
-          <button type="submit">
+          <button type="submit">  
             Save Doctor
           </button>
         </div>

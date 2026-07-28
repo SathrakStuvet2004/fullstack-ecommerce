@@ -19,7 +19,7 @@ const auth = async (req, res, next) => {
     const is_ref_TokenValid = verifyRefreshToken(ref_token)
 
     if (!is_ref_TokenValid) {
-      return errorResponse(res, 401, 'unauth')
+      return errorResponse(res, 401, 'Unauthorized')
     }
 
     if (!is_acc_TokenValid && is_ref_TokenValid) {
@@ -37,8 +37,8 @@ const auth = async (req, res, next) => {
       const db_ref_token = current_user.ref_token
 
       if (hashed_ref_token != db_ref_token) {
-        
-        return errorResponse(res, 401, 'unauth')
+
+        return errorResponse(res, 401, 'Unauthorized')
       }
 
       const input_for_new_acc_token = { id: current_user.id, role: current_user.role }
@@ -54,10 +54,8 @@ const auth = async (req, res, next) => {
         });
         req.user = { id: current_user.id, role: current_user.role }
       }
-
     }
   }
-
   next();
 };
 
