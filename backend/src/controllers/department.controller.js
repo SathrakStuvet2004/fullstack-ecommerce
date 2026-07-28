@@ -5,7 +5,6 @@ export const getDepartmentList = async (req, res) => {
 
   try {
     const departments = await getdepartmentinfo()
-    console.log(departments)
 
     if (departments) {
       return successResponse(res, 200, "Departments fetched successfully", departments)

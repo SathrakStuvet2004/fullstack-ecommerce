@@ -8,7 +8,7 @@ export const getdepartmentinfo = async (user, callback) => {
     return departments
   }
   catch (err) {
-    console.log("inside the catch", err)
+
     throw new Error("db error")
   }
 }

@@ -12,7 +12,9 @@ const auth = async (req, res, next) => {
 
   const is_acc_TokenValid = verifyAccessToken(acc_token)
 
-  req.user = { id: is_acc_TokenValid.id, role: is_acc_TokenValid.role };
+  if (is_acc_TokenValid) {
+    req.user = { id: is_acc_TokenValid.id, role: is_acc_TokenValid.role };
+  }
 
   if (!is_acc_TokenValid) {
 
@@ -25,7 +27,7 @@ const auth = async (req, res, next) => {
     if (!is_acc_TokenValid && is_ref_TokenValid) {
 
       const user_id = is_ref_TokenValid.id
-
+      
       const hashed_ref_token = hashToken(ref_token)
 
       const query = ` select * from users where id = ?`;
@@ -36,8 +38,7 @@ const auth = async (req, res, next) => {
 
       const db_ref_token = current_user.ref_token
 
-      if (hashed_ref_token != db_ref_token) {
-
+      if (hashed_ref_token !== db_ref_token) {
         return errorResponse(res, 401, 'Unauthorized')
       }
 
