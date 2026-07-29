@@ -1,13 +1,14 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { fetcher } from "../../services/fetcher";
+import { ApiError, fetcher } from "../../services/fetcher";
 
 //get the departments for select the department
 export const useGetDepartments = () => {
-  return useQuery({
+  return useQuery<any, ApiError>({
     queryKey: ["getDepartments"],
     queryFn: () => fetcher("/api/admin/department"),
     staleTime: 1000 * 60 * 5,
     refetchOnWindowFocus: false,
+    retry: false,
   });
 };
 

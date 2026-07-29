@@ -1,8 +1,18 @@
+import { useEffect } from "react";
 import AppRoutes from "./routes/AppRoutes";
 import { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router";
 import "react-toastify/dist/ReactToastify.css";
+import { setNavigate } from "./services/navigationService";
 
 function App() {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setNavigate(navigate);
+  }, [navigate]);
+
 
   return (
     <>

@@ -1,6 +1,7 @@
-import type { Dispatch, SetStateAction } from "react";
+import { useEffect, type Dispatch, type SetStateAction } from "react";
 import type { Doctor } from "../../../types/doctorType";
 import { useGetDepartments } from "../../../hoocks/admin/adminFetcherHoocks";
+import { handleApiError } from "../../../services/error";
 
 type Props = {
   doctor: Doctor;
@@ -9,7 +10,14 @@ type Props = {
 
 export default function DoctorProfessional({ doctor, setDoctor, }: Props) {
 
-  const { data: departments } = useGetDepartments()
+  const { data: departments, error, isError } = useGetDepartments()
+
+  useEffect(() => {
+    
+    if (isError) {
+      handleApiError(error);
+    }
+  }, [isError, error]);
 
   return (
     <section className="form-card">

@@ -6,5 +6,7 @@ import { authorize } from "../middlewares/authorize.middleware.js";
 const router = Router()
 
 router.get("/department", auth, authorize("Admin"), getDepartmentList)
+router.post("/doctor/add", auth, authorize("admin"))
+
 
 export default router
