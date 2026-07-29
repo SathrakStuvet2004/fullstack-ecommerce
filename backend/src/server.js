@@ -1,19 +1,25 @@
 import dotenv from "dotenv";
 import app from "./app.js";
-import db from "./config/db.js";
+import { promiseDb } from "./config/db.js";
 
 dotenv.config();
 
-db.connect((err) => {
-  if (err) {
+const startServer = async () => {
+  try {
+    const connection = await promiseDb.getConnection();
+
+    console.log("Database Connected Successfully!");
+
+    connection.release();
+
+    app.listen(process.env.PORT, () => {
+      console.log(`Server Running on Port ${process.env.PORT}`);
+    });
+  } catch (err) {
     console.log("Database Connection Failed!");
-    console.log(err);
-    return;
+    console.error(err);
+    process.exit(1);
   }
+};
 
-  console.log("Database Connected Successfully!");
-
-  app.listen(process.env.PORT, () => {
-    console.log(`Server Running on Port ${process.env.PORT}`);
-  });
-});
+startServer();
