@@ -9,5 +9,11 @@ export const signupSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  email : z.email(),
+  email: z
+    .string()
+    .trim()
+    .min(1, "Username or email is required"),
+  password: z
+    .string()
+    .min(1, "Password is required"),
 });

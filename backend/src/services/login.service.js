@@ -6,9 +6,9 @@ import { hashToken } from '../utils/sha256.js';
 
 export const loginUser = (data, res, callback) => {
 
-  const sql = `select * from users where email = ?`;
+  const sql = `select * from users where email = ? or user_name = ?`;
 
-  db.query(sql, [data.email], (err, result) => {
+  db.query(sql, [data.email, data.email], (err, result) => {
 
     if (err) {
       return callback(err, null);

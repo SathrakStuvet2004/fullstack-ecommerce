@@ -25,11 +25,9 @@ export default function AddDoctor() {
     licenseNumber: "",
 
     username: "",
-    password: "",
-    confirmPassword: "",
-    status: "Active",
+    status: "",
   });
-
+  console.log(doctor);
   return (
     <div className="add-doctor">
       <div className="page-header">

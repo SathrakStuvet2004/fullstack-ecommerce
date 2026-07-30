@@ -31,36 +31,6 @@ export default function DoctorAccount({
         </div>
 
         <div className="form-group">
-          <label>Password</label>
-
-          <input
-            type="password"
-            value={doctor.password}
-            onChange={(e) =>
-              setDoctor({
-                ...doctor,
-                password: e.target.value,
-              })
-            }
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Confirm Password</label>
-
-          <input
-            type="password"
-            value={doctor.confirmPassword}
-            onChange={(e) =>
-              setDoctor({
-                ...doctor,
-                confirmPassword: e.target.value,
-              })
-            }
-          />
-        </div>
-
-        <div className="form-group">
           <label>Status</label>
 
           <select

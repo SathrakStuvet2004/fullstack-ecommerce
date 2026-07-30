@@ -13,7 +13,7 @@ export default function DoctorPersonal({ doctor, setDoctor, }: Props) {
 
       <div className="form-grid">
         <div className="form-group">
-          <label>Full Name</label>
+          <label>Doctor Name</label>
           <input
             type="text"
             value={doctor.name}
