@@ -19,7 +19,7 @@ export const createUser = (data, callback) => {
       return callback(err)
     }
 
-    await sendMail({
+    await sendMail({  
       to: data.email,
       subject: "Verify your email",
       html: `
