@@ -8,12 +8,16 @@ export const createDoctor = async (req, res) => {
   try {
     const result = await addDoctor(doctor)
 
-    if (result) {
+      console.log("result",result);
       return successResponse(res, 200, "doctor created successfully")
-    }
 
   } catch (err) {
     console.log(err)
-    return errorResponse(res, 500, "something went wrong")
+    if (err instanceof Error) {
+      return errorResponse(res, 500, err.message);
+    }
+
+    return errorResponse(res, 500, "Something went wrong");
+
   }
 }
