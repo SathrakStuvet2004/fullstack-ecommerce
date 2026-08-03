@@ -1,23 +1,24 @@
-import * as emailVerifyService from '../services/emailVerify.service.js'
+import { email_verify } from '../services/emailVerify.service.js'
 import { successResponse, errorResponse } from '../utils/response.js'
 
-export const emailVerify = (req, res) => {
+export const emailVerify = async (req, res) => {
 
-  emailVerifyService.emailVerify(req.body, (err, result) => {
+  const token = req.body.token
 
-    if (err) {
-      errorResponse(
-        res,
-        401,
-        "Unauthorized. Please signUp."
-      )
+  try {
+
+    const result = await email_verify(token)
+
+
+    return successResponse(res, 200, "Email verified successfully")
+
+
+  } catch (err) {
+
+    if (err instanceof Error) {
+      return errorResponse(res, err.statusCode || 500, err.message);
     }
-    return (
-      successResponse(
-        res,
-        200,
-        'verification successfully'
-      )
-    )
-  })
+
+    return errorResponse(res, 500, "Internal server error")
+  }
 }

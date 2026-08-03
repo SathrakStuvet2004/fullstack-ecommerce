@@ -90,6 +90,73 @@
   color: var(--danger);
 }
 
+.password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.password-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--background);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.password-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.password-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.set-password-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: var(--text);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  color: var(--button-text);
+}
+
+.set-password-btn:hover {
+  background: var(--primary-hover);
+}
+
+.set-password-btn:active {
+  transform: scale(0.98);
+}
+
+.set-password-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.password-error {
+  color: var(--danger);
+  font-size: 13px;
+  margin-top: -10px;
+}
+
+.password-success {
+  color: var(--success);
+  font-size: 13px;
+  margin-top: -10px;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);

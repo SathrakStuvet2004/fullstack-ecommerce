@@ -1,34 +1,40 @@
-import db from '../config/db.js';
+import { promiseDb } from "../config/db.js"
+import { ApiError } from "../utils/ApiError.js"
 
-export const emailVerify = (data, callback) => {
+export const email_verify = async (token) => {
 
-  let sql = `select * from users 
-    where verification_token = ?`;
+  let sql = ""
 
-  db.query(sql, [data.token], (err, result) => {
+  try {
 
-    if (err) {
-      return callback(err);
+    sql = `select * from users where  verification_token = ?`
+
+    const [result] = await promiseDb.query(sql, [token])
+
+    if (result.length === 0) {
+
+      throw new ApiError(404, "User not found");
     }
 
     const user = result[0];
 
-    if (user) {
+    const db_verification_token = user.verification_token
 
-      sql = `update users
-             set is_verified = ?
-             where verification_token = ?`;
+    if (db_verification_token !== token) {
 
-      return db.query(sql, [true, data.token], (err, result) => {
+      throw new ApiError(400, "Please use the latest email verification link");
 
-        if (err) {
-          return callback(err);
-        }
-
-        return callback(null, result);
-      });
+    } else {
+      sql = `update users set is_verified = 1 where id = ?`
     }
 
-    return callback(null, result);
-  });
-};
+    await promiseDb.query(sql, [user.id])
+
+    return true
+
+  } catch (err) {
+
+    throw new ApiError(404, "User not found");
+  }
+
+}
